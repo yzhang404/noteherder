@@ -1,68 +1,50 @@
 import React from 'react'
+import {StyleSheet,css} from 'aphrodite'
 import quill from './quill.svg'
 import newHover from './new-hover.png'
 import newIcon from './new.png'
 
 
-class Sidebar extends React.Component{
-    constructor(props){
-        super(props)
-        this.state = {
-            status: false,
-            src: newIcon
-        }
-    }
-    onButton(ev){
-        this.setState({status: false, src: newHover})
-        console.log(this.state)
-
-    }
-    offButton(ev){
-        this.setState({status: true, src:newIcon})
-        console.log(this.state)
-    }
-render(){
+const Sidebar = ()=>{
     return(
-        <nav className="Sidebar"
-        style={styles.sidebar}
+        <nav className={css(styles.sidebar)}
         >
-          <div className="logo"
-          style = {styles.logo}
+          <div className={css(styles.logo)}
           >
             <img src={quill} alt="Noteherder"
-            style = {styles.logoImg}
+            className = {css(styles.logoImg)}
             />
           </div>
           <a className="new-note" href="/notes"
           >
             <img src={newHover} alt="New note"
-                style = {styles.buttonImgHover}
+                className = {css(styles.buttonImg)}
              />
             <img className="outline" src={this.state.src} alt="New note"
-                onMouseOver = {this.onButton.bind(this)}
-                onMouseOut = {this.offButton.bind(this)}
+               className = {
+                   css(styles.buttonImg,styles.buttonImgHover)
+               }
             />
           </a>
           <div className="SignOut"
-            style={styles.signOut}
+            className={css(styles.signOut)}
           >
             <button
-            style = {styles.signOutButton}
+            className = {css(styles.signOutButton)}
             >
               <i className="fa fa-sign-out"
-              style = {styles.signOutButtonFa}
+              className = {`fa fa-sign-out ${css(styles.signOutButtonFa)}`}
               ></i>
             </button>
           </div>
         </nav>
     );
 }
-}
 
 const mouseEvent = {
     onMouseOver:  '<img src={newHover} alt="New note" style = {styles.buttonImgHover}/>'
 }
-const styles = {
+const styles = StyleSheet({
     sidebar:{
         width: '6rem',
         backgroundColor: '#f3f3f3',
@@ -99,7 +81,9 @@ const styles = {
         transition:'opacity 0.25s ease-in-out',
     },
     buttonImgHover:{
+        ':hover':{
         opacity:'0',
+        }
     },
     signOut:{
         position: 'absolute',
@@ -112,5 +96,5 @@ const styles = {
         fontSize:'2rem',
     }
 
-}
+})
 export default Sidebar
