@@ -3,9 +3,9 @@ import React from 'react'
 import './NoteList.css'
 import Note from './Note'
 
-const NoteList = ({ notes, setCurrentNote, deleteCurrentNote }) => {
+const NoteList = ({ notes, setCurrentNote }) => {
     const handleChange = (ev) =>{
-        
+
     }
   return (
     <div className="NoteList">
