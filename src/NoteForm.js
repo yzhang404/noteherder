@@ -1,6 +1,6 @@
 import React from 'react'
 import './NoteForm.css'
-const NoteForm = (props) =>{
+const NoteForm = (currentNote) =>{
     return (
         <div className="NoteForm"
         style={styles.noteForm}>
@@ -19,13 +19,13 @@ const NoteForm = (props) =>{
                 name="title"
                 placeholder="Title your note"
                 style={styles.input}
-                value={props.currentNote.title}
+                value={currentNote.title}
               />
             </p>
             
             <textarea name="body"
             style={styles.textArea}
-            value={props.currentNote.body}></textarea>
+            value={currentNote.body}></textarea>
           </form>
         </div>
     )
