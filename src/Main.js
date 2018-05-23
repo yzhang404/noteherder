@@ -40,6 +40,9 @@ class Main extends Component {
     }
     this.setState({ notes, currentNote: note })
   }
+  deleteCurrentNote = (note) =>{
+      console.log(note)
+  }
 
   render() {
     return (
@@ -51,10 +54,12 @@ class Main extends Component {
         <NoteList
           notes={this.state.notes}
           setCurrentNote={this.setCurrentNote}
+          deleteCurrentNote = {this.deleteCurrentNote}
         />
         <NoteForm
           currentNote={this.state.currentNote}
           saveNote={this.saveNote}
+          resetCurrentNote = {this.resetCurrentNote}
         />
       </div>
     )
