@@ -1,5 +1,13 @@
 import React from 'react'
-const NoteList = () =>{
+
+class NoteList extends React.Component{
+    constructor(){
+        super()
+        this.state={
+            lists: []
+        }
+    }
+    render(){
     return (
         <div className="NoteList"
         style={styles.noteList}
@@ -67,6 +75,7 @@ const NoteList = () =>{
           </ul>
         </div>
     )
+}
 }
 
 const styles={
