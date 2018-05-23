@@ -1,5 +1,5 @@
 import React from 'react'
-
+import './NoteForm.css'
 const NoteForm = () =>{
     return (
         <div className="NoteForm"
@@ -8,7 +8,7 @@ const NoteForm = () =>{
           style={styles.formAction}>
             <button type="button"
             style={styles.button}>
-              <i className="fa fa-trash-o"
+              <i className="far fa-trash-alt"
               style={styles.buttonFa}></i>
             </button>
           </div>

@@ -1,5 +1,5 @@
 import React from 'react'
-
+import './NoteList.css'
 class NoteList extends React.Component{
     constructor(){
         super()
