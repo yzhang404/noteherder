@@ -10,12 +10,12 @@ class App extends Component {
     uid: null,
   }
 
-  componentDidMount() {
+  componentWillMount() {
     auth.onAuthStateChanged(user => {
       if (user) {
         this.handleAuth(user)
       } else {
-        this.signOut()
+        this.handleUnauth()
       }
     })
   }
@@ -23,13 +23,15 @@ class App extends Component {
   handleAuth = (user) => {
     this.setState({ uid: user.uid })
   }
+  handleUnauth = () =>{
+    this.setState({ uid: null })
+  }
 
   signedIn = () => {
     return this.state.uid
   }
 
   signOut = () => {
-    this.setState({ uid: null })
     auth.signOut()
   }
 

@@ -55,7 +55,7 @@ class Main extends React.Component {
     this.setCurrentNote(note)
 }
 
-  removeCurrentNote = () => {
+  deleteCurrentNote = () => {
     const notes = [...this.state.notes]
 
     const i = notes.findIndex(note => note.id === this.state.currentNote.id)
@@ -81,7 +81,8 @@ class Main extends React.Component {
         <NoteForm
           currentNote={this.state.currentNote}
           saveNote={this.saveNote}
-          removeCurrentNote={this.removeCurrentNote}
+          resetCurrentNote={this.resetCurrentNote}
+          deleteCurrentNote={this.deleteCurrentNote}
         />
       </div>
     )
