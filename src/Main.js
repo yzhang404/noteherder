@@ -1,28 +1,27 @@
-import React, { Component } from 'react'
+import React from 'react'
 
 import base from './base'
 import Sidebar from './Sidebar'
 import NoteList from './NoteList'
 import NoteForm from './NoteForm'
 
-class Main extends Component {
+class Main extends React.Component {
   constructor() {
     super()
     this.state = {
       currentNote: this.blankNote(),
-      notes: [] || this.retrieveLocal(),
+      notes: [],
     }
   }
-  componentWillMount(){
-        base.syncState('notes',{
-            context: this,
-            notes:[],
-            asArray: true,
-        })
+
+  componentWillMount() {
+    base.syncState('notes', {
+      context: this,
+      state: 'notes',
+      asArray: true,
+    })
   }
-  saveToLocal = (notes) =>{
-      localStorage.setItem('notes',JSON.stringify(notes))
-  }
+
   blankNote = () => {
     return {
       id: null,
@@ -41,33 +40,40 @@ class Main extends Component {
 
   saveNote = (note) => {
     const notes = [...this.state.notes]
-    if(note.id){
-    const i = notes.findIndex(currentNote => currentNote.id === note.id)
-    notes[i] = note
-    } else{
-        note.id = Date.now()
-        notes.push(note)
+
+    if (!note.id) {
+      // new note
+      note.id = Date.now()
+      notes.push(note)
+    } else {
+      // existing note
+      const i = notes.findIndex(currentNote => currentNote.id === note.id)
+      notes[i] = note
     }
-    this.setState({ notes, currentNote: note })
-    this.saveToLocal(notes)
-  }
-  deleteCurrentNote = (note) =>{
+
+    this.setState({ notes })
+    this.setCurrentNote(note)
+}
+
+  removeCurrentNote = () => {
     const notes = [...this.state.notes]
-    const index = notes.findIndex(note => note.id === this.state.currentNote.id)
-    if (index>-1){
-    notes.splice(index,1)
-    this.setState({notes, currentNote: this.blankNote()})
-    this.saveToLocal(notes)
+
+    const i = notes.findIndex(note => note.id === this.state.currentNote.id)
+    if (i > -1) {
+      notes.splice(i, 1)
+      this.setState({ notes })
     }
+
+    this.resetCurrentNote()
   }
 
   render() {
     return (
-      <div
-        className="Main"
-        style={style}
-      >
-        <Sidebar resetCurrentNote={this.resetCurrentNote} />
+      <div className="Main" style={style}>
+        <Sidebar
+          resetCurrentNote={this.resetCurrentNote}
+          signOut={this.props.signOut}
+        />
         <NoteList
           notes={this.state.notes}
           setCurrentNote={this.setCurrentNote}
@@ -75,8 +81,7 @@ class Main extends Component {
         <NoteForm
           currentNote={this.state.currentNote}
           saveNote={this.saveNote}
-          resetCurrentNote = {this.resetCurrentNote}
-          deleteCurrentNote = {this.deleteCurrentNote}
+          removeCurrentNote={this.removeCurrentNote}
         />
       </div>
     )
