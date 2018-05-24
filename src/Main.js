@@ -52,10 +52,12 @@ class Main extends Component {
   }
   deleteCurrentNote = (note) =>{
     const notes = [...this.state.notes]
-    const index = notes.findIndex(currentNote => currentNote.title === note.title && currentNote.body === note.body)
+    const index = notes.findIndex(note => note.id === this.state.currentNote.id)
+    if (index>-1){
     notes.splice(index,1)
     this.setState({notes, currentNote: this.blankNote()})
     this.saveToLocal(notes)
+    }
   }
 
   render() {
