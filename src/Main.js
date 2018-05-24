@@ -9,10 +9,18 @@ class Main extends Component {
     super()
     this.state = {
       currentNote: this.blankNote(),
-      notes: [],
+      notes: [] || this.retrieveLocal(),
     }
   }
 
+  retrieveLocal = () =>{
+        localStorage.getItem('notes')
+        return this.setState({notes: localStorage.getItem('notes' || [])})
+  }
+  saveToLocal = (notes) =>{
+      localStorage.setItem('notes',JSON.stringify(notes))
+      console.log('hi'+localStorage.getItem('notes'))
+  }
   blankNote = () => {
     return {
       id: null,
@@ -39,12 +47,15 @@ class Main extends Component {
         notes.push(note)
     }
     this.setState({ notes, currentNote: note })
+    this.saveToLocal(notes)
+    console.log(notes)
   }
   deleteCurrentNote = (note) =>{
     const notes = [...this.state.notes]
     const index = notes.findIndex(currentNote => currentNote.title === note.title && currentNote.body === note.body)
     notes.splice(index,1)
     this.setState({notes, currentNote: this.blankNote()})
+    this.saveToLocal(notes)
   }
 
   render() {
