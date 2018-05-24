@@ -18,7 +18,6 @@ class Main extends Component {
   }
   saveToLocal = (notes) =>{
       localStorage.setItem('notes',JSON.stringify(notes))
-      console.log('hi'+localStorage.getItem('notes'))
   }
   blankNote = () => {
     return {
@@ -47,7 +46,6 @@ class Main extends Component {
     }
     this.setState({ notes, currentNote: note })
     this.saveToLocal(notes)
-    console.log(notes)
   }
   deleteCurrentNote = (note) =>{
     const notes = [...this.state.notes]
