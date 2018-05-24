@@ -12,10 +12,9 @@ class Main extends Component {
       notes: [] || this.retrieveLocal(),
     }
   }
-
-  retrieveLocal = () =>{
-        localStorage.getItem('notes')
-        return this.setState({notes: localStorage.getItem('notes' || [])})
+  componentWillMount(){
+        const notes = JSON.parse(localStorage.getItem('notes'))
+        return this.setState({notes: notes || []})
   }
   saveToLocal = (notes) =>{
       localStorage.setItem('notes',JSON.stringify(notes))
