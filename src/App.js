@@ -19,7 +19,7 @@ class App extends Component {
       if (user) {
         this.handleAuth(user)
       } else {
-        this.handleUnauth()
+        this.handleUnauth(user)
       }
     })
   }
@@ -28,7 +28,7 @@ class App extends Component {
     this.setState({ uid: user.uid })
     localStorage.setItem('uid',user.uid)
   }
-  handleUnauth = () =>{
+  handleUnauth = (user) =>{
     this.setState({ uid: null })
     localStorage.removeItem('uid',user.uid)
   }
