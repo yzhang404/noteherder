@@ -45,12 +45,15 @@ class Main extends React.Component {
       notes[i] = note
     }
 
-    this.setState({ notes })
-
-    if (shouldRedirect) {
-      this.props.history.push(`/notes/${note.id}`)
+    this.setState(
+      {notes},
+      ()=> {
+        if (shouldRedirect) {
+          this.props.history.push(`/notes/${note.id}`)
+      }
     }
-}
+    )
+  }
 
   removeNote = (currentNote) => {
     const notes = [...this.state.notes]
