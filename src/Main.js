@@ -45,7 +45,9 @@ class Main extends React.Component {
       const i = notes.findIndex(currentNote => currentNote.id === note.id)
       notes[i] = note
     }
-
+    notes.sort((a,b)=>{
+      return b.updatAt-a.updatAt
+    })
     this.setState(
       note.updateAt= new Date.now(),
       {notes},

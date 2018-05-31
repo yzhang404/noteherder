@@ -21,7 +21,6 @@ class NoteForm extends Component {
     }
   }
 
-
   blankNote = () => {
     return {
       id: null,
