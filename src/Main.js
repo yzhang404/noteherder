@@ -27,6 +27,7 @@ class Main extends React.Component {
       id: null,
       title: '',
       body: '',
+      updateAt: null,
     }
   }
 
@@ -46,6 +47,7 @@ class Main extends React.Component {
     }
 
     this.setState(
+      note.updateAt= new Date.now(),
       {notes},
       ()=> {
         if (shouldRedirect) {

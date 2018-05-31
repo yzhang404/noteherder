@@ -2,7 +2,7 @@
   "name": "noteherder",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://noteherder-e45cc.firebaseapp.com/",
+  "homepage": "https://noteherder-e45cc.firebaseapp.com",
   "dependencies": {
     "aphrodite": "^2.2.1",
     "firebase": "^5.0.3",
